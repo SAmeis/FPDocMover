@@ -5,7 +5,7 @@ unit commonutils;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, dom, XMLRead, XmlReader;
 
 type
   TLogCallback = procedure(IsError: Boolean; const aMessgage: String) of object;
@@ -16,6 +16,7 @@ type
   private
     fLogCallback: TLogCallback;
   protected
+    procedure ReadXML(out doc: TXMLDocument; const aFileName: UnicodeString);
     procedure WriteLogCallback(const aMessage: String);
      procedure WriteLogCallback(const aMessage: String; aFormatArgs: array of const);
     procedure WriteLogCallback(IsError: Boolean; const aMessage: String);
@@ -27,6 +28,34 @@ type
 implementation
 
 { TFPDocModule }
+
+procedure TFPDocModule.ReadXML(doc: TXMLDocument; const aFileName: UnicodeString
+  );
+var
+  fh: THandle;
+  fs: THandleStream;
+  parser: TDOMParser;
+  xmlsrc: XmlReader.TXMLInputSource;
+begin
+  fs := nil;
+  parser := nil;
+  xmlsrc := nil;
+  fh := FileOpen(aFileName, fmOpenRead or fmShareDenyWrite);
+  if fh = -1 then
+    RaiseLastOSError;
+  try
+    fs := THandleStream.Create(fh);
+    parser := TDOMParser.Create;
+    xmlsrc := TXMLInputSource.Create(fs);
+    parser.Options.PreserveWhitespace := True;
+    parser.Parse(xmlsrc, doc);
+  finally
+    xmlsrc.Free;
+    parser.Free;
+    fs.Free;
+    FileClose(fh);
+  end;
+end;
 
 procedure TFPDocModule.WriteLogCallback(const aMessage: String);
 begin

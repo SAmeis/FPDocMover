@@ -63,7 +63,7 @@ var
   Node: TDOMNode;
   ElementNode: TDOMElement absolute Node;
 begin
-  ReadXMLFile(InputDoc, aFile);
+  Self.ReadXMLFile(InputDoc, aFile);
   try
     if not (InputDoc.DocumentElement.NodeName = 'fpdoc-descriptions') then
       raise Exception.CreateFmt('FPDoc root node %s not found in file %s.',

@@ -271,7 +271,7 @@ var
   Packages: TFPDocModuleStructureList;
   pkg: TFPDocModuleStructure;
 begin
-  ReadXMLFile(Doc, InputFile);
+  Self.ReadXMLFile(Doc, InputFile);
   try
     Packages := GetPackageList(Doc);
     if Packages.Count = 0 then
