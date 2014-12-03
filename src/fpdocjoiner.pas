@@ -5,7 +5,7 @@ unit fpdocjoiner;
 interface
 
 uses
-  Classes, SysUtils, commonutils, DOM, XMLRead, XMLWrite, XPath;
+  Classes, SysUtils, commonutils, DOM, XMLWrite, XPath;
 
 type
   TUnicodeStringArray = array of UnicodeString;
@@ -21,7 +21,7 @@ type
     fAllowCommentInFileList: Boolean;
     fTreeEndElements: TUnicodeStringArray;  // element nodes at which merging is switched to text merging
   protected
-    procedure MergeFileIntoDocument(const aFile: RawByteString;
+    procedure MergeFileIntoDocument(const aFile: UnicodeString;
       aTargetDoc: TXMLDocument);
     procedure MergeFPDocIntoParent(aSourceNode, aTargetParentNode: TDOMElement);
     function GetPackageNode(aDoc: TXMLDocument;
@@ -55,7 +55,7 @@ end;
 
 { TFPDocJoiner }
 
-procedure TFPDocJoiner.MergeFileIntoDocument(const aFile: RawByteString;
+procedure TFPDocJoiner.MergeFileIntoDocument(const aFile: UnicodeString;
   aTargetDoc: TXMLDocument);
 var
   InputDoc: TXMLDocument;
@@ -63,7 +63,7 @@ var
   Node: TDOMNode;
   ElementNode: TDOMElement absolute Node;
 begin
-  Self.ReadXMLFile(InputDoc, aFile);
+  Self.ReadXML(InputDoc, aFile);
   try
     if not (InputDoc.DocumentElement.NodeName = 'fpdoc-descriptions') then
       raise Exception.CreateFmt('FPDoc root node %s not found in file %s.',

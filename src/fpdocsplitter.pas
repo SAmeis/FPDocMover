@@ -5,7 +5,7 @@ unit fpdocsplitter;
 interface
 
 uses
-  Classes, SysUtils, commonutils, fgl, dom, XMLRead, XMLWrite, xpath;
+  Classes, SysUtils, commonutils, fgl, dom, XMLWrite, xpath;
 type
   TFPDocSplitMode = (smPackage, smModule);
 
@@ -115,7 +115,6 @@ function TFPDocSplitter.GetPackageList(doc: TXMLDocument
 const
   PACKAGE_NODES = '/fpdoc-descriptions/package';
 var
-  FPDocRootNode: TDOMNode;
   PackageNode: TDOMNode;
   i: Integer;
   pkg: TFPDocModuleStructure;
@@ -271,7 +270,7 @@ var
   Packages: TFPDocModuleStructureList;
   pkg: TFPDocModuleStructure;
 begin
-  Self.ReadXMLFile(Doc, InputFile);
+  Self.ReadXML(Doc, InputFile);
   try
     Packages := GetPackageList(Doc);
     if Packages.Count = 0 then

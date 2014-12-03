@@ -29,8 +29,8 @@ implementation
 
 { TFPDocModule }
 
-procedure TFPDocModule.ReadXML(doc: TXMLDocument; const aFileName: UnicodeString
-  );
+procedure TFPDocModule.ReadXML(out doc: TXMLDocument;
+  const aFileName: UnicodeString);
 var
   fh: THandle;
   fs: THandleStream;

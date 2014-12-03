@@ -220,19 +220,21 @@ begin
   writeln('  --help        -h    Shows this help and exits');
   writeln('  --output      -o    Output file name for joins or directory for');
   writeln('                      splitting (default: current directory)');
-  writeln('  --overwrite   -w    Overwrite existing files');
+  Writeln();
+  Writeln('MODES');
+  writeln('  --join        -j    Join files');
+  writeln('  --split       -s    Split files');
   Writeln();
   writeln('JOINING FILES');
-  writeln('  --join        -j    Join files');
   writeln('  --text-nodes  -t    Join text nodes instead of element nodes');
   writeln('  --files       -f    Specify file with list of input file names for joining');
   writeln('  --comment     -c    Allow characters # and ; to start a comment line in file list');
+  writeln('  --overwrite   -w    Overwrite existing file');
   Writeln();
   writeln('SPLITTING FILES');
-  writeln('  --split   -s    Split files');
-  writeln('  --module  -m    Split files by module (default for splitting)');
-  writeln('  --package -p    Split files by package');
-  writeln('  --input   -i    Input file name for splitting');
+  writeln('  --module      -m    Split files by module (default for splitting)');
+  writeln('  --package     -p    Split files by package');
+  writeln('  --input       -i    Input file name for splitting');
 end;
 
 var
