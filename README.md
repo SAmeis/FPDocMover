@@ -54,3 +54,6 @@ SPLITTING FILES
   --package     -p    Split files by package
   --input       -i    Input file name for splitting
 </pre>
+
+## License
+This program is licensed under the GNU General Public License Version 2 (or any later version). See file [LICENSE.txt](LICENSE.txt) for full license text.
